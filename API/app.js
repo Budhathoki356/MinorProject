@@ -1,12 +1,30 @@
 var express = require('express');
 var app = express();
+var morgan = require('morgan');
+var config = require('./config/index');
 
-app.get('/', function( req, res){
-    res.end('hello from express server');
-});
+//call internal files
+var authRoute = require('./contollers/auth');
+var userRoute = require('./contollers/users');
 
-app.listen(4000, function(err, done){
-    if(err) {
+
+//third party middleware
+app.use(morgan('dev'));
+
+//inbuilt middleware 
+app.use(express.urlencoded({
+    extended: true
+}));
+app.use(express.json());
+
+//router level middleware
+app.use('/auth', authRoute);
+app.use('/user', userRoute);
+
+port = process.env.PORT || config.port;
+//server 
+app.listen(port, function (err, done) {
+    if (err) {
         console.log('Server listening failed.');
     } else {
         console.log('Server listening at port 4000.');
