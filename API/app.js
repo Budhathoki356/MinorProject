@@ -7,6 +7,7 @@ var config = require('./config/index');
 var authRoute = require('./contollers/auth');
 var userRoute = require('./contollers/users');
 
+require('./config/mongoose.config');
 
 //third party middleware
 app.use(morgan('dev'));
