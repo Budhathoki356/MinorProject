@@ -5,37 +5,33 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
-    password: {
-        type: String,
-        required: true
-    },
+    password: String,
     email: {
         type: String,
-        required: true,
-        unique: true
+        unique: true,
+        sparse: true,
+        required: true
     },
-    address: {
-        type: String
+    role: {
+        type: Number,
+        enum: ['1', '2'],
+        default: 2
     },
-    mobileNumber: Number,
     dob: Date,
+    mobileNumber: {
+        type: Number,
+    },
     gender: {
         type: String,
         enum: ['male', 'female', 'others']
     },
-    role: {
-        type: Number,
-        enum: [1, 2],
-        default: 2
-    },
     activeStatus: {
         type: Boolean,
         default: true
-    },
-    createdTIme: Date,
-    updatedTime: Date
+    }
 }, {
     timestamps: true
 });

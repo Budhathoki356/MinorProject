@@ -4,8 +4,8 @@ var morgan = require('morgan');
 var config = require('./config/index');
 
 //call internal files
-var authRoute = require('./contollers/auth');
-var userRoute = require('./contollers/users');
+var authRoute = require('./controllers/auth');
+var userRoute = require('./controllers/users');
 
 require('./config/mongoose.config');
 
@@ -29,6 +29,5 @@ app.listen(port, function (err, done) {
         console.log('Server listening failed.');
     } else {
         console.log('Server listening at port 4000.');
-        console.log('Press CTRL + C to exit');
     }
 });
